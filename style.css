@@ -15,6 +15,7 @@ body{
 }
 .container{
     display: flex;
+    flex-direction: column;
 }
 .datainput{
     padding: 0.75rem;
@@ -27,6 +28,7 @@ body{
     border: 2px solid black;
     border-radius: 2rem;
     background-color: lightyellow;
+    margin: 10px;
 }
 .datainput input{
     width: 100%;
