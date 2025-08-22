@@ -14,7 +14,7 @@ submit.addEventListener("click", () => {
     age.textContent=`Age:${ageinput.value}`;
     const height=document.querySelector("#height-input").value;
     const weight = document.querySelector("#weight-input").value;
-    weight1.textContent=`weight:${weight}`;
+    weight1.textContent=`weight:${height}`;
     const unitConvert = async () => {
         const ans = await fetch(`https://api.api-ninjas.com/v1/unitconversion?amount=${weight}&unit=${fromUnit}`, {
             headers: { 'X-Api-Key': 'VEotvthUtNGxM4JJ7bP/5g==5dJHnMXxfrwERGAZ' }
