@@ -21,7 +21,7 @@ submit.addEventListener("click", () => {
         });
         const final = await ans.json();
         // console.log(final);
-        const temp=(height)/(final.conversions.meter*final.conversions.meter);
+        const temp=((height)/(final.conversions.meter*final.conversions.meter))*100;
         // console.log(weight);
         bmi.textContent=`BMI:${temp}`
         const comment=document.querySelector("#comment");
