@@ -1,111 +1,229 @@
+@import "tailwindcss";
+/* ============================================
+   src/styles/globals.css
+   VitalAI - Health Website Global Theme
+   ============================================ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* ─── CSS Variables (Light Theme) ─────────────── */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* Brand */
+  --color-primary:        #0D4F3C;
+  --color-primary-light:  #1A7A5E;
+  --color-primary-dark:   #072b20;
+  --color-accent:         #2ECFA8;
+  --color-accent-glow:    rgba(46, 207, 168, 0.25);
+  --color-accent-subtle:  rgba(46, 207, 168, 0.08);
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* Backgrounds */
+  --bg-base:              #F5F0E8;
+  --bg-surface:           #FFFFFF;
+  --bg-muted:             #EDEAE2;
+  --bg-dark:              #0A0F0D;
+  --bg-dark-surface:      #111814;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Status */
+  --color-success:        #2ECFA8;
+  --color-warning:        #F5A623;
+  --color-danger:         #FF6B4A;
+  --color-info:           #4FC3F7;
+  --color-purple:         #C678DD;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  /* Text */
+  --text-primary:         #0A0F0D;
+  --text-secondary:       #4A5568;
+  --text-muted:           #8A9BA8;
+  --text-on-dark:         #F5F0E8;
+
+  /* Typography */
+  --font-display:         'Clash Display', 'DM Sans', sans-serif;
+  --font-body:            'DM Sans', sans-serif;
+  --font-mono:            'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   40px;
+  --space-2xl:  64px;
+
+  /* Border Radius */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm:    0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:    0 4px 20px rgba(0,0,0,0.1);
+  --shadow-glow:  0 0 30px rgba(46, 207, 168, 0.2);
+  --shadow-card:  0 8px 32px rgba(13, 79, 60, 0.12);
+
+  /* Transitions */
+  --transition-fast:   0.15s ease;
+  --transition-base:   0.25s ease;
+  --transition-slow:   0.4s ease;
+
+  /* Z-index scale */
+  --z-base:     1;
+  --z-dropdown: 10;
+  --z-modal:    50;
+  --z-nav:      100;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* ─── Dark Theme ───────────────────────────────── */
+[data-theme="dark"] {
+  --bg-base:          #0A0F0D;
+  --bg-surface:       #111814;
+  --bg-muted:         #1A221C;
+  --text-primary:     #F5F0E8;
+  --text-secondary:   rgba(245, 240, 232, 0.6);
+  --text-muted:       rgba(245, 240, 232, 0.35);
+  --color-primary:    #2ECFA8;
+  --color-primary-light: #4eddb8;
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+/* ─── Tailwind Custom Properties ───────────────── */
+/* Usage in Tailwind classes: bg-[var(--color-accent)]  */
+/* Or extend tailwind.config.js with these vars:       */
+/*
+  theme: {
+    extend: {
+      colors: {
+        primary:  'var(--color-primary)',
+        accent:   'var(--color-accent)',
+        danger:   'var(--color-danger)',
+        warn:     'var(--color-warning)',
+        success:  'var(--color-success)',
+        base:     'var(--bg-base)',
+        surface:  'var(--bg-surface)',
+      },
+      fontFamily: {
+        display: ['Clash Display', 'DM Sans', 'sans-serif'],
+        body:    ['DM Sans', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'monospace'],
+      },
+      borderRadius: {
+        'pill': 'var(--radius-pill)',
+        'xl2':  'var(--radius-xl)',
+      },
+      boxShadow: {
+        'glow':  'var(--shadow-glow)',
+        'card':  'var(--shadow-card)',
+      }
+    }
   }
+*/
+
+/* ─── Global Resets ────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
-  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+/* ─── BMI Status Utility Classes ───────────────── */
+.bmi-underweight { color: var(--color-info); }
+.bmi-normal      { color: var(--color-success); }
+.bmi-overweight  { color: var(--color-warning); }
+.bmi-obese       { color: var(--color-danger); }
+
+/* ─── Animations ───────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--color-accent-glow); }
+  50%       { box-shadow: 0 0 40px var(--color-accent-glow); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.animate-fade-up   { animation: fadeInUp 0.7s ease forwards; }
+.animate-float     { animation: float 3s ease-in-out infinite; }
+.animate-glow      { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* ─── Component Helpers ────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(46, 207, 168, 0.15);
+  border-radius: var(--radius-xl);
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary-light));
+  color: var(--bg-dark);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 12px 28px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-glow);
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px var(--color-accent-glow);
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+.btn-outline {
+  background: transparent;
+  color: var(--text-on-dark);
+  border: 1px solid rgba(245, 240, 232, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 12px 24px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+.btn-outline:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* Range input theming */
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: rgba(46, 207, 168, 0.2);
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--color-accent-glow);
 }
